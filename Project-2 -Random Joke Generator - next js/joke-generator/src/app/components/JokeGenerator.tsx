@@ -25,9 +25,9 @@ const JokeGenerator = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-green-950 text-white flex flex-col items-center justify-center gap-12 px-6 text-center">
+    <div className="min-h-screen bg-green-950 text-white flex flex-col items-center justify-center gap-12 px-[10%] md:px-[20%] lg:px-[30%] mx-auto text-center">
       <p
-        className={`text-lg sm:text-xl md:text-2xl transition-opacity duration-700 ${
+        className={`text-lg sm:text-xl md:text-2xl transition-opacity duration-700  ${
           loading ? "opacity-0" : "opacity-100"
         }`}
       >

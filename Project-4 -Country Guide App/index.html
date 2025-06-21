@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Guide App</title>
+  </head>
+  <body>
+    <h1>hi</h1>
+    <div>
+      <div>
+        <div>
+          <input type="text" placeholder="Inter Country Name" id="country" />
+          <button onclick="getData()">Search</button>
+        </div>
+        <div>
+          <div>
+            <h1 id="country_name"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const country = document.getElementById("country").value;
+      const country_name = document.getElementById("country_name");
+      const url =
+        // "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
+        "https://restcountries.com/v3.1/name/nepal?fullText=true";
+      const getData = () => {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            // country_name.innerText = data[0].borders;
+            console.log("ok " + data[0].name.common);
+          });
+      };
+
+      const url2 = "https://restcountries.com/v3.1/name/nepal?fullText=true";
+      let data2 = fetch(url2).then((response) => response.json());
+      console.log(data2);
+      const url3 =
+        "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+      let data3 = fetch(url3).then((response) => response.json());
+      console.log(data3);
+    </script>
+  </body>
+</html>
