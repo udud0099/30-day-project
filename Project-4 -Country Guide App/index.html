@@ -14,34 +14,56 @@
           <button onclick="getData()">Search</button>
         </div>
         <div>
-          <div>
+          <div id="content_box">
+            <h1>test</h1>
             <h1 id="country_name"></h1>
+            <img src="" id="country_flag" alt="" />
           </div>
         </div>
       </div>
     </div>
     <script>
-      const country = document.getElementById("country").value;
-      const country_name = document.getElementById("country_name");
-      const url =
-        // "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
-        "https://restcountries.com/v3.1/name/nepal?fullText=true";
       const getData = () => {
+        const country = document.getElementById("country").value.trim();
+
+        const country_name = document.getElementById("country_name");
+        const country_flag = document.getElementById("country_flag");
+        const url =
+          "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
+
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
-            // country_name.innerText = data[0].borders;
-            console.log("ok " + data[0].name.common);
+            const check = data.status;
+            // if (typeof data[0].name.common === undefined) {
+            //   country_name.innerText = data[0].name.common;
+            //   country_flag.src = data[0].flags.svg;
+            //   console.log("ok " + data[0].flags.png);
+            // } else {
+            //   document.getElementById("content_box").style.display = "none";
+            // }
+            console.log(check);
           });
+
+        // try {
+        //   const country_name = document.getElementById("country_name");
+        //   const country_flag = document.getElementById("country_flag");
+        //   const url =
+        //     "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
+
+        //   fetch(url)
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //       country_name.innerText = data[0].name.common;
+        //       country_flag.src = data[0].flags.svg;
+        //       console.log("ok " + data[0].flags.png);
+        //     });
+        // } catch (err) {
+        //   document.getElementById("content_box").style.display = "none";
+        // }
       };
 
-      const url2 = "https://restcountries.com/v3.1/name/nepal?fullText=true";
-      let data2 = fetch(url2).then((response) => response.json());
-      console.log(data2);
-      const url3 =
-        "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
-      let data3 = fetch(url3).then((response) => response.json());
-      console.log(data3);
+      getData();
     </script>
   </body>
 </html>
