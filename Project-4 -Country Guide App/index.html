@@ -6,14 +6,21 @@
     <title>Country Guide App</title>
   </head>
   <body>
+    <style>
+      #content_box,
+      #content_box {
+        display: none;
+      }
+    </style>
     <h1>hi</h1>
     <div>
       <div>
         <div>
           <input type="text" placeholder="Inter Country Name" id="country" />
-          <button onclick="getData()">Search</button>
+          <button id="getData">Search</button>
         </div>
         <div>
+          <p id="warning"></p>
           <div id="content_box">
             <h1>test</h1>
             <h1 id="country_name"></h1>
@@ -23,8 +30,18 @@
       </div>
     </div>
     <script>
-      const getData = () => {
+      const getData = document.getElementById("getData");
+
+      const getDatafun = () => {
         const country = document.getElementById("country").value.trim();
+
+        if (!country) {
+          console.log("return from hear");
+          document.getElementById("warning").style.display = "block";
+          document.getElementById("warning").innerHTML =
+            "Plz give the country name";
+          return;
+        }
 
         const country_name = document.getElementById("country_name");
         const country_flag = document.getElementById("country_flag");
@@ -32,38 +49,67 @@
           "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
 
         fetch(url)
-          .then((response) => response.json())
+          .then((response) => {
+            return response.json();
+          })
           .then((data) => {
-            const check = data.status;
-            // if (typeof data[0].name.common === undefined) {
-            //   country_name.innerText = data[0].name.common;
-            //   country_flag.src = data[0].flags.svg;
-            //   console.log("ok " + data[0].flags.png);
-            // } else {
-            //   document.getElementById("content_box").style.display = "none";
-            // }
-            console.log(check);
+            if (!data || !data.length) {
+              document.getElementById("warning").style.display = "block";
+              document.getElementById("warning").innerHTML =
+                "Plz give the Valid  country name";
+              return;
+            } else {
+              console.log(data.name.common);
+            }
+          })
+          .catch((error) => {
+            warningBox.style.display = "block";
+            warningBox.innerHTML = "Please enter a valid country name.";
+            console.error(error.message);
           });
+      };
+      getData.addEventListener("click", getDatafun);
+    </script>
+    <!-- <script>
+      const getData = document.getElementById("getData");
 
-        // try {
-        //   const country_name = document.getElementById("country_name");
-        //   const country_flag = document.getElementById("country_flag");
-        //   const url =
-        //     "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
+      const getDatafun = () => {
+        const country = document.getElementById("country").value.trim();
+        const warningBox = document.getElementById("warning");
+        if (!country) {
+          warningBox.style.display = "block";
+          warningBox.innerHTML = "Please enter a country name.";
+          return;
+        }
 
-        //   fetch(url)
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //       country_name.innerText = data[0].name.common;
-        //       country_flag.src = data[0].flags.svg;
-        //       console.log("ok " + data[0].flags.png);
-        //     });
-        // } catch (err) {
-        //   document.getElementById("content_box").style.display = "none";
-        // }
+        const country_name = document.getElementById("country_name");
+        const country_flag = document.getElementById("country_flag");
+        const url =
+          "https://restcountries.com/v3.1/name/" + country + "?fullText=true";
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Country not found");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (!data || !data.length) {
+              warningBox.style.display = "block";
+              warningBox.innerHTML = "Please enter a valid country name.";
+              return;
+            }
+            warningBox.style.display = "none";
+            country_name.innerText = data[0].name.common;
+          })
+          .catch((error) => {
+            warningBox.style.display = "block";
+            warningBox.innerHTML = "Please enter a valid country name.";
+            console.error(error.message);
+          });
       };
 
-      getData();
-    </script>
+      getData.addEventListener("click", getDatafun);
+    </script> -->
   </body>
 </html>
