@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Limit Character In Input Field</title>
+  </head>
+  <body>
+    <div>
+      <textarea name="" id="textBox"></textarea>
+      <p id="textshow"></p>
+      <p id="noChart"></p>
+
+      <!-- <script>
+        let textBox = document.getElementById("textBox");
+        let noChart = document.getElementById("noChart");
+        let textshow = document.getElementById("textshow"); 
+
+        function myFunction() {
+          textshow.innerHTML = textBox.value;
+          noChart.innerHTML = textBox.value.length + "/60";
+          if (textBox.value.length > 60) {
+            textshow.style.color = "red";
+          } else {
+            textshow.style.color = "black";
+          }
+        }
+      </script> -->
+      <script>
+        let textBox = document.getElementById("textBox");
+        let noChart = document.getElementById("noChart");
+        let textshow = document.getElementById("textshow");
+
+        // document.getElementById("textBox").onkeydown = function (event) {
+        textBox.addEventListener("input", function () {
+          textshow.innerHTML = textBox.value;
+          noChart.innerHTML = textBox.value.length + "/60";
+          if (textBox.value.length > 60) {
+            textshow.style.color = "red";
+          } else {
+            textshow.style.color = "black";
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>
