@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How To Create Tabs</title>
+  </head>
+  <body>
+    <style>
+      .tab-content div {
+        display: none;
+      }
+      .tab-content .active {
+        display: block;
+      }
+      .tabs .active {
+        color: red;
+      }
+    </style>
+    <div class="container">
+      <div class="tabs">
+        <h3 class="active">tab 1</h3>
+        <h3>tab 2</h3>
+        <h3>tab 3</h3>
+        <h3>tab 4</h3>
+        <h3>tab 5</h3>
+      </div>
+      <div class="tab-content">
+        <div class="active">
+          <h4>1 title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            commodi tempora, quod minus neque voluptatum, deleniti saepe non eum
+            et pariatur voluptas possimus at eius nam. Quia expedita est
+            deleniti?
+          </p>
+        </div>
+        <div>
+          <h4>2 title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            commodi tempora, quod minus neque voluptatum, deleniti saepe non eum
+            et pariatur voluptas possimus at eius nam. Quia expedita est
+            deleniti?
+          </p>
+        </div>
+        <div>
+          <h4>3 title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            commodi tempora, quod minus neque voluptatum, deleniti saepe non eum
+            et pariatur voluptas possimus at eius nam. Quia expedita est
+            deleniti?
+          </p>
+        </div>
+        <div>
+          <h4>4 title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            commodi tempora, quod minus neque voluptatum, deleniti saepe non eum
+            et pariatur voluptas possimus at eius nam. Quia expedita est
+            deleniti?
+          </p>
+        </div>
+        <div>
+          <h4>5 title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            commodi tempora, quod minus neque voluptatum, deleniti saepe non eum
+            et pariatur voluptas possimus at eius nam. Quia expedita est
+            deleniti?
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let tabs = document.querySelectorAll(".tabs h3");
+      let tabContents = document.querySelectorAll(".tab-content div");
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+          tabContents.forEach((content) => {
+            content.classList.remove("active");
+          });
+          tabs.forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          tabContents[index].classList.add("active");
+          tabs[index].classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
